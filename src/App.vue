@@ -1,27 +1,28 @@
 <template>
   <div id="app">
-    <Header v-bind:page-title="$parent.$data.pageTitle"/>
     <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Header v-bind:page-title="$parent.$data.pageTitle" />
+    <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
+    <Calender v-bind:month="$parent.$data.month" v-bind:weekdays="$parent.getWeekdaysInCurrentLanguage()" /> <!-- Just your default, cheap calender; Might still come in handy, when visualizing data tho. -->
     <Footer v-bind:team-members="$parent.$data.teamMembers" v-bind:project-title="$parent.$data.projectTitle" v-bind:version="$parent.$data.version"/>
   </div>
 </template>
 
 <script>
-  import HelloWorld from './components/HelloWorld.vue'
+  //import HelloWorld from './components/HelloWorld.vue'
   import Footer from "./components/Footer";
   import Header from "./components/Header";
+  import Calender from "./components/Calender/Calender";
 
   export default {
     name: 'App',
     props: {
-      projectTitle: String,
-      pageTitle: String
     },
     components: {
+      Calender,
       Header,
       Footer,
-      HelloWorld
+      //HelloWorld
     }
   }
 </script>

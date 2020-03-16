@@ -3,8 +3,7 @@
         <div class="Header Header--small">
             <h1>{{ pageTitle }}</h1>
             <div class="Options">
-                <p class="add">Add Track</p>
-                <font-awesome-icon icon="plus" />
+                <p class="add"><font-awesome-icon icon="plus" /> Add Track</p>
             </div>
         </div>
     </header>
@@ -46,6 +45,19 @@
 
     .Header-credits, .Header-version {
         font-size: 0.8em;
+    }
+
+    .add {
+        border: solid 1px $tertiaryAccentColor;
+        padding: 0.5em;
+        cursor: pointer;
+        background-color: transparent;
+
+        transition: 0.25s ease;
+
+        &:hover {
+            background-color: $tertiaryAccentColor;
+        }
     }
 
     h1 {
