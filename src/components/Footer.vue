@@ -32,15 +32,14 @@
 	.Site-footer {
 		z-index: 100;
 
-		position: absolute;
 		width: 100%;
 		left: 0;
 		bottom: 0;
+		background-color: $primaryAccentColor;
+		color: $primaryTextColor;
 	}
 
 	.Footer {
-		background-color: $primaryAccentColor;
-		color: $primaryTextColor;
 		text-align: center;
 
 		display: flex;

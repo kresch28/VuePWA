@@ -1,8 +1,10 @@
 <template>
 	<div class="Day">
-		{{ day.number }}
-		<br>
-		{{ day.weekdayString }}
+		<div class="DayNumber">
+			{{ day.number }}
+		</div>
+		<div class="DayDescription">
+		</div>
 	</div>
 </template>
 
@@ -22,5 +24,9 @@
 		border: 1px solid $tertiaryAccentColor;
 		margin: 0;
 		padding: 0.5em;
+
+		.DayDescription {
+			min-height: 100px;
+		}
 	}
 </style>

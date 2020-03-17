@@ -19,6 +19,9 @@ new Vue({
     projectTitle: document.title.replace(/-/g, " "), // can be changed to any arbitrary value, currently I am just reading the documents title (specified in package.json)
     version: JSON.stringify(require('../package.json').version).replace(/"/g, ""), // same as for the project title
     teamMembers: ['Katharina Resch', 'Matthias Köttritsch'],
+    tracks: [],
+    currentlyRecordingTrack: null,
+    
     month: [],
     currentLanguage: "eng",
     weekdays: {
@@ -32,6 +35,12 @@ new Vue({
     getWeekdaysInCurrentLanguage() {
       return this._data.weekdays[this._data.currentLanguage];
     },
+  
+    /**
+     * This method pushes an empty day into the data.month array
+     * That is used, so the days are indented correctly when visualizing the calender without having some kind of css tricks
+     * @returns {number}
+     */
     pushEmptyDay() {
       // eslint-disable-next-line vue/no-side-effects-in-computed-properties
       return this._data.month.push({ // again _data
@@ -40,6 +49,10 @@ new Vue({
         weekdayString: ""
       })
     },
+  
+    /**
+     * This method collects data about the current month (on what day it starts and how many days it has) and fills the data.month array with the actual days of the current month
+     */
     fillMonth() {
       let date = new Date();
       let currentMonth = date.getMonth() + 1;
@@ -47,10 +60,7 @@ new Vue({
       
       let nrOfDays = new Date(currentYear, currentMonth, 0).getDate();
       let currentWeekDay = new Date(currentYear, currentMonth - 1, 1).getDay();
-      let weekdays = this.getWeekdaysInCurrentLanguage;
-  
-      console.log(this);
-      console.log(this._data); // Whyever this is _data and not data ¯\_(ツ)_/¯
+      let weekdays = this.getWeekdaysInCurrentLanguage();
   
       /**
        * Insert empty day tiles up front (so the days will be indented correctly, starting with monday)
@@ -60,7 +70,7 @@ new Vue({
       for (let i = 0; i < daysToInsert; i++) { this.pushEmptyDay(); }
         
       for (let i = 1; i <= nrOfDays; i++) {
-        this._data.month.push({ // again _data
+        this._data.month.push({ // Whyever this is _data and not data ¯\_(ツ)_/¯
           number: i,
           dayOfWeek: currentWeekDay,
           weekdayString: weekdays[currentWeekDay]

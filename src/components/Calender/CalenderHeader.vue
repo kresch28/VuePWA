@@ -13,9 +13,14 @@
 			weekdays: Array
 		},
 		computed: {
+			/**
+			 * This method sorts the given array of weekdays in a european way (the array js works is in an american standard -> thus it starts with sunday)
+			 * @returns {[]} The array in a european way (starting with monday)
+			 */
 			weekdaysSorted() {
 				let sorted = [];
-				console.log(this);
+
+				// add all days except the sunday to the array of sorted days and then add the sunday as last item
 				for (let i = 1; i < this.weekdays.length; i++) { sorted.push(this.weekdays[i]) }
 				sorted.push(this.weekdays[0]);
 
