@@ -4,8 +4,8 @@
             <h1>{{ pageTitle }}</h1>
             <div class="Options">
                 <p class="button buttonAdd"><font-awesome-icon icon="plus" /> Add Track</p>
-                <p class="button buttonAdd" @click="startTracking" v-if="!tracking"><font-awesome-icon icon="plus" /> Start tracking</p>
-                <p class="button buttonStop" @click="stopTracking" v-else><font-awesome-icon icon="minus" /> Stop tracking</p>
+                <p class="button buttonAdd" @click="$emit('startTracking')" v-if="!$parent.$data.recording"><font-awesome-icon icon="plus" /> Start tracking</p>
+                <p class="button buttonStop" @click="$emit('stopTracking')" v-else><font-awesome-icon icon="minus" /> Stop tracking</p>
             </div>
         </div>
     </header>
@@ -16,21 +16,7 @@
         name: 'Header',
         props: {
             pageTitle: String,
-            tracking: Boolean(false)
         },
-        methods: {
-            startTracking() {
-                this.tracking = true;
-
-                this.$parent.$parent.$data.currentlyRecordingTrack = { "date": new Date(), "startTime": new Date().getTime(), "endTime": null, "category": "", "description": "" };
-            },
-            stopTracking() {
-                this.tracking = false;
-                this.$parent.$parent.$data.currentlyRecordingTrack.endTime = new Date().getTime();
-                this.$parent.$parent.$data.tracks.push(this.$parent.$parent.$data.currentlyRecordingTrack);
-                this.$parent.$parent.$data.currentlyRecordingTrack = null;
-            }
-        }
     }
 </script>
 
