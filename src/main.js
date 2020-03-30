@@ -3,6 +3,7 @@ import App from './App.vue'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import {faMinus, faUserSecret, faPlus} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import './registerServiceWorker'
 
 library.add(faUserSecret);
 library.add(faPlus);
