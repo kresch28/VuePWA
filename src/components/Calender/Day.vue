@@ -4,7 +4,7 @@
 			{{ day.number }}
 		</div>
 		<div class="DayDescription">
-			<Track v-for="track in day.tracksOfThisDay" v-bind:track="track" v-bind:key="track" v-bind:short-form="true" />
+			<Track v-for="track in tracks" v-bind:track="track" v-bind:key="track" v-bind:short-form="true" />
 		</div>
 	</div>
 </template>
@@ -15,7 +15,8 @@
 		name: "Day",
 		components: {Track},
 		props: {
-			day: Object
+			day: Object,
+			tracks: Array
 		}
 	}
 </script>
@@ -48,4 +49,5 @@
 			background-color: $quinaryAccentColor;
 		}
 	}
+
 </style>
