@@ -4,7 +4,7 @@
 			{{ day.number }}
 		</div>
 		<div class="DayDescription">
-			<Track v-for="track in tracks" v-bind:track="track" v-bind:key="track" v-bind:short-form="true" />
+			<Track v-for="track in tracks" v-bind:track="track" v-bind:key="track.id" v-bind:short-form="true" />
 		</div>
 	</div>
 </template>

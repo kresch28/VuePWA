@@ -34,30 +34,33 @@
         version: JSON.stringify(require('../package.json').version).replace(/"/g, ""), // same as for the project title
         teamMembers: ['Katharina Resch', 'Matthias Köttritsch'],
 
-        tracks: [],
-        currentlyRecordingTrack: null,
         recording: false,
 
         currentLanguage: "eng",
       }
     },
+    computed: {
+        tracks() {
+          return this.$store.state.tracks;
+		},
+        currentTrack() {
+          return this.$store.state.currentlyEnteringTrack;
+		}
+    },
     methods: {
-      startNewTrack() {
+      startNewTrack(category) {
+        console.debug("Starting a new track");
         this.recording = true;
-        this.currentlyRecordingTrack = { "date": new Date(), "startTime": new Date(), "endTime": null, "category": "Musteraufgabe", "description": "Muster Muster Muster" };
+        this.currentTrack.date = new Date();
+        this.currentTrack.startTime = new Date();
+        this.currentTrack.category = category;
       },
       stopRecording() {
+        console.debug("Stop tracking and persisting data");
         this.recording = false;
-        this.currentlyRecordingTrack.endTime = new Date();
-        this.tracks.push(this.currentlyRecordingTrack);
-
-        /*
-        this.month.forEach(day => {
-          if (day.number === this.currentlyRecordingTrack.startTime.getDate()) { day.tracksOfThisDay.push(this.currentlyRecordingTrack); }
-        });
-        */
-
-        this.currentlyRecordingTrack = null;
+        this.currentTrack.endTime = new Date();
+        this.$store.commit('addTrack', this.currentTrack);
+        this.$store.commit('resetCurrentTrack');
       },
     }
   }
@@ -76,13 +79,27 @@
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: $primaryTextColor;
-    margin-top: 60px;
+    margin-top: $headerHeight;
 
     min-height: 100vh;
   }
 
   .spacerForHeader {
     padding-top: 3em;
+  }
+
+  .button {
+    border: solid 1px $tertiaryAccentColor;
+    padding: 0.5em;
+    margin: 0.5em;
+    cursor: pointer;
+    background-color: transparent;
+
+    transition: 0.25s ease;
+
+    &:hover {
+      background-color: $tertiaryAccentColor;
+    }
   }
 
 

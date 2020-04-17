@@ -1,9 +1,9 @@
 <template>
 	<div class="TracksWrapper">
 		<h2>Tracks</h2>
-		<Track v-for="track in tracks" v-bind:track="track" v-bind:key="track" />
+		<Track v-for="track in tracks" v-bind:track="track" v-bind:key="track.id" />
 		<ul>
-			<li v-for="track in tracks" v-bind:key="track">{{ track }}</li>
+			<li v-for="track in tracks" v-bind:key="track.id">{{ track }}</li>
 		</ul>
 	</div>
 </template>

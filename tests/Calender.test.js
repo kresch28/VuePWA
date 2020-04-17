@@ -6,16 +6,14 @@ import Calender from "../src/components/Calender/Calender";
 
 describe("Calender render functionality", () => {
 	const wrapper = mount(App);
-	console.log(wrapper);
 	const calender = wrapper.get(Calender);
 	
 	it("Calender has a header", () => {
-		console.log(calender);
-		expect(calender).toContain('CalenderHeader');
+		expect(calender.selector.components).toHaveProperty('CalenderHeader');
 	});
 	
 	it("Calender renders exact number of days", () => {
-		// TODO
+		calender.get('')
 	});
 	
 	it("Calender starts with the correct day in the month", () => {

@@ -3,20 +3,41 @@
         <div class="Header Header--small">
             <h1>{{ pageTitle }}</h1>
             <div class="Options">
-                <p class="button buttonAdd"><font-awesome-icon icon="plus" /> Add Track</p>
-                <p class="button buttonAdd" @click="$emit('startTracking')" v-if="!$parent.$data.recording"><font-awesome-icon icon="plus" /> Start tracking</p>
+                <p class="button buttonAdd" @click="showForm(false)"><font-awesome-icon icon="plus" /> Add Track</p>
+                <p class="button buttonAdd" @click="showForm(true)" v-if="!$parent.$data.recording"><font-awesome-icon icon="plus" /> Start tracking</p>
                 <p class="button buttonStop" @click="$emit('stopTracking')" v-else><font-awesome-icon icon="minus" /> Stop tracking</p>
+
+                <FormTest v-bind:small="onlyEnteringTitle" v-if="enteringData" v-on:startTracking="startTracking" />
             </div>
         </div>
     </header>
 </template>
 
 <script>
+    import FormTest from "./FormTest";
     export default {
         name: 'Header',
+        components: {FormTest},
         props: {
             pageTitle: String,
+            enteringData: Boolean,
+            onlyEnteringTitle: Boolean
         },
+        methods: {
+            showForm(showSmallForm = false) {
+                if (!(this.onlyEnteringTitle !== showSmallForm && this.enteringData)) { this.enteringData = !this.enteringData; }
+                this.onlyEnteringTitle = showSmallForm;
+            },
+            startTracking(category) {
+                console.debug("Starting a new track in the header with category " + category);
+                this.$emit('startTracking', category); // This seems a little dirty to me, but I don't know how to pass the event on to the next parent otherwise
+                this.enteringData = false;
+            },
+        },
+        mounted () {
+            this.enteringData = false;
+            this.onlyEnteringTitle = false;
+        }
     }
 </script>
 
@@ -33,6 +54,10 @@
         top: 0;
     }
 
+    .Header {
+        height: $headerHeight !important;
+    }
+
     .Header, .Options {
         background-color: $primaryAccentColor;
         color: $primaryTextColor;
@@ -47,20 +72,6 @@
 
     .Header-credits, .Header-version {
         font-size: 0.8em;
-    }
-
-    .button {
-        border: solid 1px $tertiaryAccentColor;
-        padding: 0.5em;
-        margin: 0.5em;
-        cursor: pointer;
-        background-color: transparent;
-
-        transition: 0.25s ease;
-
-        &:hover {
-            background-color: $tertiaryAccentColor;
-        }
     }
 
     h1 {

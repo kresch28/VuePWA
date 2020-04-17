@@ -4,6 +4,7 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import {faMinus, faUserSecret, faPlus} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import './registerServiceWorker'
+import {store} from './store'
 
 library.add(faUserSecret);
 library.add(faPlus);
@@ -15,4 +16,5 @@ Vue.config.productionTip = false;
 
 new Vue({
   render: h => h(App),
+  store
 }).$mount('#app');
