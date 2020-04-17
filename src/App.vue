@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Header v-bind:page-title="pageTitle" v-on:startTracking="startNewTrack" v-on:stopTracking="stopRecording" />
+    <Header v-bind:page-title="pageTitle" v-on:startTracking="startNewTrack" v-on:stopTracking="stopRecording" v-on:addTrack="addTrack" />
     <div class="spacerForHeader" />
     <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
     <Calender v-bind:tracks="tracks" /> <!-- Just your default, cheap calender; Might still come in handy, when visualizing data tho. -->
@@ -49,19 +49,28 @@
     },
     methods: {
       startNewTrack(category) {
-        console.debug("Starting a new track");
         this.recording = true;
         this.currentTrack.date = new Date();
         this.currentTrack.startTime = new Date();
         this.currentTrack.category = category;
       },
       stopRecording() {
-        console.debug("Stop tracking and persisting data");
         this.recording = false;
         this.currentTrack.endTime = new Date();
-        this.$store.commit('addTrack', this.currentTrack);
-        this.$store.commit('resetCurrentTrack');
+        // this.$store.commit('addTrack', this.currentTrack);
+        // this.$store.commit('resetCurrentTrack');
+        this.addTrack(this.currentTrack);
+
+        //this.$store.dispatch("addTrack", this.$parent.firebase.tracks, this.currentTrack);
       },
+      addTrack(data) {
+        for (let property in data) {
+          if (property && data[property] && typeof data[property].getMonth === 'function') { data[property] = data[property].toISOString(); console.log("exchanging date " + data.property); }
+        }
+        console.log(data);
+        this.$parent.$data.firebase.tracks.push(data);
+      }
+      // TODO: add a delete functionality
     }
   }
 </script>

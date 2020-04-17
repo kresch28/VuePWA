@@ -46,8 +46,14 @@ new Vue({
   router,
   render: h => h(App),
   store,
+  data: {
+    firebase: {
+      tracks: tracksReference
+    },
+  },
   // computed: Vuex.mapGetters(['tracks']),
   created () {
-    this.$store.dispatch('bindTracks', tracksReference).then(r => console.log(r));
+    console.log(this);
+    this.$store.dispatch('bindTracks', this.$data.firebase.tracks);
   }
 }).$mount('#app');

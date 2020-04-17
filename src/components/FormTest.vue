@@ -67,7 +67,13 @@
 				this.form.startTime = new Date(originalDateString + " " + this.form.startTime);
 				this.form.endTime = new Date(originalDateString + " " + this.form.endTime);
 
-				this.$store.commit('addTrack', this.form);
+				let data = this.form;
+				data.originalData = null;
+
+				this.$emit('addTrack', data);
+
+				//this.$store.commit('addTrack', this.form);
+				//this.$store.dispatch("addTrack", this.$parent.$parent.firebase.tracks, this.currentTrack);
 				this.form = new Form(this.currentTrack);
 			}
 		},

@@ -36,6 +36,9 @@ export const store = new Vuex.Store({
 		unbindTracks: firebaseAction(({ unbindFirebaseRef }) => {
 			return unbindFirebaseRef('tracks');
 		}),
+		addTrack: firebaseAction((context, payload) => {
+			return context.add(payload);
+		}),
 	},
 	getters: {
 		tracks: state => state.tracks,

@@ -8,7 +8,7 @@
                 <p class="button buttonAdd" @click="showForm(true)" v-if="!$parent.$data.recording"><font-awesome-icon icon="plus" /> Start tracking</p>
                 <p class="button buttonStop" @click="$emit('stopTracking')" v-else><font-awesome-icon icon="minus" /> Stop tracking</p>
 
-                <FormTest v-bind:small="onlyEnteringTitle" v-if="enteringData" v-on:startTracking="startTracking" />
+                <FormTest v-bind:small="onlyEnteringTitle" v-if="enteringData" v-on:startTracking="startTracking" v-on:addTrack="addTrack" />
             </div>
         </div>
     </header>
@@ -31,10 +31,12 @@
                 this.onlyEnteringTitle = showSmallForm;
             },
             startTracking(category) {
-                console.debug("Starting a new track in the header with category " + category);
                 this.$emit('startTracking', category); // This seems a little dirty to me, but I don't know how to pass the event on to the next parent otherwise
                 this.enteringData = false;
             },
+            addTrack(data) {
+                this.$emit('addTrack', data); // same as start tracking
+            }
         },
         mounted () {
             this.enteringData = false;

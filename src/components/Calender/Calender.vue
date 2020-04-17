@@ -86,7 +86,7 @@
 				while (this.month.length % 7 !== 0) { this.pushEmptyDay(counter++); }
 			},
 			tracksOfDay(day) {
-				return this.tracks.filter(track => this.IsSameDate(track.date, day.date));
+				return this.tracks.filter(track => this.IsSameDate(new Date(track.date), day.date));
 			},
 			/**
 			 * @return {boolean}

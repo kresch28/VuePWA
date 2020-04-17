@@ -19,12 +19,14 @@
 			 * @return {string}
 			 */
 			DateToString(date) {
+				if (!(date instanceof Date)) { date = new Date(date); }
 				return date.toLocaleDateString();
 			},
 			/**
 			 * @return {string}
 			 */
 			TimeToString(time) {
+				if (!(time instanceof Date)) { time = new Date(time); }
 				return time.toLocaleTimeString();
 			}
 		}
