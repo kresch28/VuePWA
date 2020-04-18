@@ -30,6 +30,9 @@
                 if (!(this.onlyEnteringTitle !== showSmallForm && this.enteringData)) { this.enteringData = !this.enteringData; }
                 this.onlyEnteringTitle = showSmallForm;
             },
+            hideForm() {
+                this.enteringData = false;
+            },
             startTracking(category) {
                 this.$emit('startTracking', category); // This seems a little dirty to me, but I don't know how to pass the event on to the next parent otherwise
                 this.enteringData = false;

@@ -1,5 +1,5 @@
 <template>
-	<div class="FormContainer">
+	<div class="FormContainer NoBorder">
 		<form method="post" @submit.prevent="enterTrack">
 			<div class="InputCombo">
 				<label for="Category">Category: </label>
@@ -23,10 +23,10 @@
 					<label for="EndTime">EndTime: </label>
 					<input type="time" id="EndTime" v-model="form.endTime">
 				</div>
-			</div>
-			<div class="InputCombo">
-				<label for="SubmitButton"></label>
-				<button class="button" type="submit" id="SubmitButton" v-if="!small">Submit</button>
+				<div class="InputCombo">
+					<label for="SubmitButton"></label>
+					<button class="button" type="submit" id="SubmitButton">Submit</button>
+				</div>
 			</div>
 		</form>
 	</div>
@@ -95,10 +95,11 @@
 		top: $headerHeight;
 		right: 0;
 
-		background-color: $quinaryAccentColor;
-		border: solid 1px $secondaryAccentColor;
+		background-color: rgba($quinaryAccentColor, 0.1);
+		/* border: solid 1px $secondaryAccentColor; */
 
-		padding: 0.5em;
-		margin: 1em;
+		backdrop-filter: blur(2.5px);
+
+		padding: 2em;
 	}
 </style>

@@ -111,9 +111,34 @@
     &:hover {
       background-color: $tertiaryAccentColor;
     }
+  }
 
-    .NoBorder {
-      border: 0 !important;
+  .NoBorder {
+    border: none;
+  }
+
+  input[type=text] {
+    border: none;
+    border-bottom: 2px solid black;
+    background-color: transparent;
+  }
+
+  .InputCombo {
+    width: 100%;
+    margin: 2em 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    input {
+      width: 100%;
+      font-size: 1.15em;
+    }
+    label {
+      text-align: left;
+      font-size: 0.7em;
+      /* color: $inverseTextColor; */
+      font-weight: lighter;
     }
   }
 
