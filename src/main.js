@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import {faMinus, faUserSecret, faPlus} from '@fortawesome/free-solid-svg-icons'
+import {faMinus, faUserSecret, faPlus, faTimes, faSave} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import './registerServiceWorker'
 import {store} from './store'
@@ -15,6 +15,8 @@ import firebase from "firebase";
 library.add(faUserSecret);
 library.add(faPlus);
 library.add(faMinus);
+library.add(faTimes);
+library.add(faSave);
 
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 
@@ -53,7 +55,6 @@ new Vue({
   },
   // computed: Vuex.mapGetters(['tracks']),
   created () {
-    console.log(this);
     this.$store.dispatch('bindTracks', this.$data.firebase.tracks);
   }
 }).$mount('#app');

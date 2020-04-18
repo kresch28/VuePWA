@@ -2,7 +2,7 @@
     <header class="Site-header">
         <div class="Header Header--small">
             <h1>{{ pageTitle }}</h1>
-            <Navigation />
+            <Navigation v-if="false" />
             <div class="Options">
                 <p class="button buttonAdd" @click="showForm(false)"><font-awesome-icon icon="plus" /> Add Track</p>
                 <p class="button buttonAdd" @click="showForm(true)" v-if="!$parent.$data.recording"><font-awesome-icon icon="plus" /> Start tracking</p>

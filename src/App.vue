@@ -1,10 +1,10 @@
 <template>
   <div id="app">
-    <Header v-bind:page-title="pageTitle" v-on:startTracking="startNewTrack" v-on:stopTracking="stopRecording" v-on:addTrack="addTrack" />
+    <Header v-bind:page-title="pageTitle" @startTracking="startNewTrack" @stopTracking="stopRecording" @addTrack="addTrack" />
     <div class="spacerForHeader" />
     <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
     <Calender v-bind:tracks="tracks" /> <!-- Just your default, cheap calender; Might still come in handy, when visualizing data tho. -->
-    <TracksDebugOutput v-bind:tracks="tracks" />
+    <TracksDebugOutput v-bind:tracks="tracks" @removeTrack="removeTrack" @editTrack="editTrack" />
     <Footer v-bind:team-members="teamMembers" v-bind:project-title="projectTitle" v-bind:version="version"/>
   </div>
 </template>
@@ -67,10 +67,12 @@
         for (let property in data) {
           if (property && data[property] && typeof data[property].getMonth === 'function') { data[property] = data[property].toISOString(); console.log("exchanging date " + data.property); }
         }
-        console.log(data);
+
         this.$parent.$data.firebase.tracks.push(data);
-      }
-      // TODO: add a delete functionality
+      },
+      removeTrack(track) { this.$parent.$data.firebase.tracks.child(track['.key']).remove(); },
+      editTrack(track) { this.$parent.$data.firebase.tracks.child(track['.key']).update({ category: track.category, description: track.description }); console.log(track); },
+      // TODO: add an edit functionality
     }
   }
 </script>
@@ -108,6 +110,10 @@
 
     &:hover {
       background-color: $tertiaryAccentColor;
+    }
+
+    .NoBorder {
+      border: 0 !important;
     }
   }
 
