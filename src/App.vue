@@ -4,7 +4,8 @@
     <div class="spacerForHeader" />
     <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
     <Calender v-bind:tracks="tracks" /> <!-- Just your default, cheap calender; Might still come in handy, when visualizing data tho. -->
-    <TracksDebugOutput v-bind:tracks="tracks" @removeTrack="removeTrack" @editTrack="editTrack" />
+    <!-- <TracksDebugOutput v-bind:tracks="tracks" @removeTrack="removeTrack" @editTrack="editTrack" /> -->
+    <AllTracks v-bind:tracks="tracks" @removeTrack="removeTrack" @editTrack="editTrack" />
     <Footer v-bind:team-members="teamMembers" v-bind:project-title="projectTitle" v-bind:version="version"/>
   </div>
 </template>
@@ -14,14 +15,16 @@
   import Footer from "./components/Footer";
   import Header from "./components/Header";
   import Calender from "./components/Calender/Calender";
-  import TracksDebugOutput from "./components/TracksDebugOutput";
+  import AllTracks from "./components/AllTracks";
+  // import TracksDebugOutput from "./components/TracksDebugOutput";
 
   export default {
     name: 'App',
     props: {
     },
     components: {
-      TracksDebugOutput,
+      AllTracks,
+      // TracksDebugOutput,
       Calender,
       Header,
       Footer,

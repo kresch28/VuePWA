@@ -1,9 +1,9 @@
 module.exports = {
     // … other Vue CLI plugin options …
     pwa: {
-        name: 'Japanese Phrasebook',
-        themeColor: '#f44336',
-        msTileColor: '#f44336',
+        name: 'Time Tracker',
+        themeColor: '#e6fdcd',
+        msTileColor: '#e6fdcd',
         iconPaths: {
             favicon32: 'img/icons/favicon-32x32.png',
             favicon16: 'img/icons/favicon-16x16.png',
@@ -12,7 +12,7 @@ module.exports = {
             msTileImage: 'img/icons/msapplication-icon-144x144.png',
         },
         workboxOptions: {
-            cacheId: 'phrasebook',
+            cacheId: 'timetracker',
             importWorkboxFrom: 'local',
             navigateFallback: 'shell.html',
             navigateFallbackWhitelist: [/^((?!\/404).)*$/],

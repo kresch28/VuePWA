@@ -44,6 +44,7 @@
 		{
 			return {
 				form: new Form(),
+				errors: {}
 			}
 		},
 		computed: {
@@ -55,6 +56,12 @@
 		methods: {
 			enterTrack ()
 			{
+				if (this.form.category === "") {
+					this.errors["category"] = "Required";
+					return;
+				}
+
+				// TODO: do some input validation
 				if (this.small)
 				{
 					this.$emit('startTracking', this.form.category);

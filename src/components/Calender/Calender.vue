@@ -1,7 +1,9 @@
 <template>
 	<div class="Calender-Wrapper">
 		<CalenderHeader class="Calender-Header" v-bind:weekdays="getWeekdaysInCurrentLanguage()" />
-		<Day class="Calender-Day" v-for="day in month" v-bind:day="day" v-bind:key="day.logicalDayCounter" v-bind:tracks="tracksOfDay(day)" />
+		<div class="CalenderContentWrapper">
+			<Day class="Calender-Day" v-for="day in month" v-bind:day="day" v-bind:key="day.logicalDayCounter" v-bind:tracks="tracksOfDay(day)" />
+		</div>
 	</div>
 </template>
 
@@ -110,6 +112,7 @@
 		display: flex;
 		flex-wrap: wrap;
 
+
 		width: 80%;
 		height: 80%;
 		margin: auto;
@@ -118,14 +121,23 @@
 
 		padding: 0.5em;
 
+		.CalenderContentWrapper {
+			border: none;
+			padding: 0;
+			width: 97%;
+			display: flex;
+			flex-wrap: wrap;
+			margin: auto;
+		}
+
 		.Calender-Header {
 			border: none;
 			padding: 0;
-			width: 100%;
+			width: 97%;
 		}
 
 		.Calender-Day {
-			width: calc((99% / 7) - 1em);
+			width: calc((98% / 7) - 1em);
 		}
 	}
 </style>

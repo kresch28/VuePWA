@@ -1,10 +1,7 @@
 <template>
 	<div class="TracksWrapper">
-		<h2>Tracks Debug Output</h2>
-		<Track v-for="track in tracks" v-bind:track="track" v-bind:key="track.id" @removeTrack="removeTrack" @editTrack="editTrack"/>
-		<ul>
-			<li v-for="track in tracks" v-bind:key="track.id">{{ track }}</li>
-		</ul>
+		<h2>All Tracks Overview</h2>
+		<Track v-for="track in tracks" v-bind:track="track" v-bind:key="track['.key']" @removeTrack="removeTrack" @editTrack="editTrack"/>
 	</div>
 </template>
 
@@ -12,7 +9,7 @@
 	import Track from "./Track";
 
 	export default {
-		name: 'TracksDebugOutput',
+		name: 'AllTracks',
 		components: {Track},
 		props: {
 			tracks: Array
