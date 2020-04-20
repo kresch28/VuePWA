@@ -66,13 +66,16 @@
 			},
 			toggleEditMode ()
 			{
-				this.editing = !this.editing;
+				if (!this.small) {
+					this.editing = !this.editing;
+				}
 			},
 			editTrack ()
 			{
 				this.$emit('editTrack', this.track);
 				this.editing = false;
 			}
+			// TODO: make a function to scroll to the according track in the track overview when clicking this track in the calendar(with the small prop)
 		},
 		mounted () {
 			this.form = new Form(this.track);

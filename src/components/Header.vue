@@ -6,7 +6,7 @@
             <div class="Options">
                 <p id="ButtonAddTrack" class="button buttonAdd" @click="showForm(false)"><font-awesome-icon icon="plus" /> Add Track</p>
                 <p id="ButtonStartTracking" class="button buttonAdd" @click="showForm(true)" v-if="!$parent.$data.recording"><font-awesome-icon icon="plus" /> Start tracking</p>
-                <p class="button buttonStop" @click="$emit('stopTracking')" v-else><font-awesome-icon icon="minus" /> Stop tracking</p>
+                <p id="ButtonStopTracking" class="button buttonStop" @click="$emit('stopTracking')" v-else><font-awesome-icon icon="minus" /> Stop tracking</p>
 
                 <FormTest v-bind:small="onlyEnteringTitle" v-if="enteringData" v-on:startTracking="startTracking" v-on:addTrack="addTrack" />
             </div>
